@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { stripe } from '@/lib/stripe';
+import { getStripe } from '@/lib/stripe';
 import { getProductBySlug } from '@/lib/products';
 
 // POST /api/checkout
@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
       const discountPct = product.subscriptionDiscountPct || 0;
       const subscriptionAmount = Math.round(unitAmount * (1 - discountPct / 100));
 
-      const session = await stripe.checkout.sessions.create({
+      const session = await getStripe().checkout.sessions.create({
         mode: 'subscription',
         line_items: [
           {
@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
     }
 
     // One-time payment
-    const session = await stripe.checkout.sessions.create({
+    const session = await getStripe().checkout.sessions.create({
       mode: 'payment',
       line_items: [
         {

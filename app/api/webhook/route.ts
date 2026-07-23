@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { stripe } from '@/lib/stripe';
+import { getStripe } from '@/lib/stripe';
 import { supabaseAdmin } from '@/lib/supabase';
 
 // Stripe requires the raw request body (unparsed) to verify the webhook signature.
@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
 
   let event: Stripe.Event;
   try {
-    event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
+    event = getStripe().webhooks.constructEvent(body, signature, webhookSecret);
   } catch (err: any) {
     console.error('Webhook signature verification failed:', err.message);
     return NextResponse.json({ error: `Webhook Error: ${err.message}` }, { status: 400 });
@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
         const session = event.data.object as Stripe.Checkout.Session;
 
         if (session.mode === 'payment') {
-          const lineItems = await stripe.checkout.sessions.listLineItems(session.id, {
+          const lineItems = await getStripe().checkout.sessions.listLineItems(session.id, {
             expand: ['data.price.product'],
           });
 
@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
         }
 
         if (session.mode === 'subscription' && session.subscription) {
-          const subscription = await stripe.subscriptions.retrieve(session.subscription as string);
+          const subscription = await getStripe().subscriptions.retrieve(session.subscription as string);
           await db.from('subscriptions').upsert(
             {
               stripe_subscription_id: subscription.id,
