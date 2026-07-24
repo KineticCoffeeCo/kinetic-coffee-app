@@ -5,8 +5,8 @@ export default function Footer() {
         <div className="footer-grid">
           <div>
             <img
-              src="/kinetic-logo.jpg"
-              alt="Kinetic Coffee Company logo"
+              src="/kinetic-logo.png"
+              alt="Kinetic Coffee Co. logo"
               style={{ width: 56, height: 56, borderRadius: '50%', marginBottom: '0.9rem' }}
             />
             <span className="logo-text" style={{ fontSize: '1.15rem' }}>
@@ -40,7 +40,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} Kinetic Coffee Company.</span>
+          <span>© {new Date().getFullYear()} Kinetic Coffee Co.</span>
           <span>Veteran-Owned &amp; Operated · All Systems Go</span>
         </div>
       </div>

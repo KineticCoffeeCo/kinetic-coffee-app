@@ -1,4 +1,4 @@
-# Kinetic Coffee Company — Full E-Commerce App
+# Kinetic Coffee Co. — Full E-Commerce App
 
 Next.js + Stripe (payments & subscriptions) + Supabase (orders/subscribers database),
 deployed on Vercel.

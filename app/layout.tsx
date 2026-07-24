@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Kinetic Coffee Company — Veteran-Owned Small-Batch Coffee',
+  title: 'Kinetic Coffee Co. — Veteran-Owned Small-Batch Coffee',
   description:
-    'Kinetic Coffee Company is a veteran-owned coffee company serving small-batch bagged coffee, lattes, drip coffee, and Lotus Energy refreshers.',
+    'Kinetic Coffee Co. is a veteran-owned coffee company serving small-batch bagged coffee, lattes, drip coffee, and Lotus Energy refreshers.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
