@@ -58,10 +58,22 @@ body{ padding-top: var(--banner-h); }
 
 .construction-banner{
   position:fixed; top:0; left:0; right:0; z-index:110; height:var(--banner-h);
-  display:flex; align-items:center; justify-content:center; gap:0.6rem;
+  display:flex; align-items:center;
   background:var(--red); color:var(--paper);
+  overflow:hidden;
+}
+.construction-track{
+  display:flex; gap:4rem; white-space:nowrap; width:max-content;
+  animation: scroll-banner 16s linear infinite;
   font-family:var(--mono); font-size:0.72rem; letter-spacing:0.05em; text-transform:uppercase;
-  padding:0 1rem; text-align:center;
+  padding-left:1rem;
+}
+@keyframes scroll-banner{
+  from{ transform:translateX(0); }
+  to{ transform:translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce){
+  .construction-track{ animation:none; }
 }
 
 header{

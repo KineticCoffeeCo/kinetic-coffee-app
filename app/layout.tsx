@@ -20,7 +20,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <div className="construction-banner">
-          🚧 Site is under construction and not open for ordering yet — come back soon!
+          <div className="construction-track">
+            <span>🚧 Site is under construction and not open for ordering yet — come back soon!</span>
+            <span>🚧 Site is under construction and not open for ordering yet — come back soon!</span>
+          </div>
         </div>
         {children}
       </body>
