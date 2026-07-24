@@ -27,7 +27,8 @@ export default function Header() {
   ];
 
   return (
-    <header className={scrolled ? 'solid' : ''}>
+    <>
+      <header className={scrolled ? 'solid' : ''}>
       <div className="wrap">
         <Link href="/" className="logo" onClick={() => setOpen(false)}>
           <img className="logo-mark" src="/kinetic-logo.png" alt="Kinetic Coffee Co. logo" />
@@ -71,5 +72,8 @@ export default function Header() {
         ))}
       </nav>
     </header>
+
+    <div className="header-spacer" />
+    </>
   );
 }
