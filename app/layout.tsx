@@ -18,7 +18,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <div className="construction-banner">
+          🚧 Site is under construction and not open for ordering yet — come back soon!
+        </div>
+        {children}
+      </body>
     </html>
   );
 }

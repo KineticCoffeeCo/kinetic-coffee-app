@@ -1,4 +1,5 @@
 :root{
+  --banner-h: 42px;
   --black: #14100D;
   --black-2: #1E1712;
   --black-3: #2A2019;
@@ -53,8 +54,18 @@ section{ padding:5rem 0; }
 .section-head{ max-width:640px; margin-bottom:2.5rem; }
 .section-head h2{ font-size:clamp(2rem, 4vw, 3rem); color:var(--paper); margin-top:0.6rem; }
 
+body{ padding-top: var(--banner-h); }
+
+.construction-banner{
+  position:fixed; top:0; left:0; right:0; z-index:110; height:var(--banner-h);
+  display:flex; align-items:center; justify-content:center; gap:0.6rem;
+  background:var(--red); color:var(--paper);
+  font-family:var(--mono); font-size:0.72rem; letter-spacing:0.05em; text-transform:uppercase;
+  padding:0 1rem; text-align:center;
+}
+
 header{
-  position:sticky; top:0; z-index:100; padding:1.1rem 0;
+  position:sticky; top:var(--banner-h); z-index:100; padding:1.1rem 0;
   background:rgba(20,16,13,0.95); backdrop-filter:blur(6px);
   border-bottom:1px solid var(--hairline);
 }

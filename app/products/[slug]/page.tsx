@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { getProductBySlug } from '@/lib/products';
+import { ORDERS_OPEN } from '@/lib/config';
 
 export default function ProductPage() {
   const params = useParams();
@@ -81,20 +82,33 @@ export default function ProductPage() {
             )}
 
             <div className="buy-actions">
-              <button className="btn btn-primary" disabled={loading !== null} onClick={() => buy('payment')}>
-                {loading === 'payment' ? 'Redirecting…' : `Buy Now — $${(unitPriceCents / 100).toFixed(2)}`}
-              </button>
+              {ORDERS_OPEN ? (
+                <>
+                  <button className="btn btn-primary" disabled={loading !== null} onClick={() => buy('payment')}>
+                    {loading === 'payment' ? 'Redirecting…' : `Buy Now — $${(unitPriceCents / 100).toFixed(2)}`}
+                  </button>
 
-              {product.subscribable && (
-                <button className="btn btn-ghost" disabled={loading !== null} onClick={() => buy('subscription')}>
-                  {loading === 'subscription'
-                    ? 'Redirecting…'
-                    : `Subscribe & Save ${product.subscriptionDiscountPct}% — $${(subUnitPriceCents / 100).toFixed(2)}/mo`}
-                </button>
+                  {product.subscribable && (
+                    <button className="btn btn-ghost" disabled={loading !== null} onClick={() => buy('subscription')}>
+                      {loading === 'subscription'
+                        ? 'Redirecting…'
+                        : `Subscribe & Save ${product.subscriptionDiscountPct}% — $${(subUnitPriceCents / 100).toFixed(2)}/mo`}
+                    </button>
+                  )}
+                </>
+              ) : (
+                <>
+                  <button className="btn btn-primary" disabled style={{ opacity: 0.5, cursor: 'not-allowed' }}>
+                    Not Open For Orders Yet
+                  </button>
+                  <p className="form-note" style={{ marginTop: '0.8rem' }}>
+                    🚧 We're still building out online ordering — check back soon.
+                  </p>
+                </>
               )}
             </div>
 
-            {error && <p className="form-msg error" style={{ marginTop: '1rem' }}>{error}</p>}
+            {ORDERS_OPEN && error && <p className="form-msg error" style={{ marginTop: '1rem' }}>{error}</p>}
           </div>
         </div>
       </section>
